@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Importing your custom idle screen widget from another Dart file
 import 'start/idle_screen.dart';  // import your idle screen
 import 'mood_logging/mood_history_screen.dart';
+import 'mood_logging/mood_analytics_screen.dart';
 // Entry point of the Flutter application
 void main() {
   // This function initializes and runs the app.
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,   // Removes the "debug" banner in the corner
       home: const IdleScreen(),            // This is the first screen that shows when the app starts
       routes: {
-        '/history': (context) => const MoodHistoryScreen(),
+        '/analytics': (context) => const MoodAnalyticsScreen(),
       },
     );
   }

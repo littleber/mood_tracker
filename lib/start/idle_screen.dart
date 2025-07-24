@@ -14,64 +14,57 @@ class IdleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[850],
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // 1) Tap-to-log area
-              Expanded(
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () async {
-                    final mood = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const MoodInputScreen(),
-                      ),
-                    );
-                    if (mood != null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Mood submitted: $mood')),
-                      );
-                    }
-                  },
-                  child: Center(
-                    child: Text(
-                      'Tap anywhere to input mood',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 36,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
+      body: Stack(
+        children: [
+          // 1) Full‑screen tap area
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () async {
+              final mood = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const MoodInputScreen()),
+              );
+              if (mood != null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Mood submitted: $mood')),
+                );
+              }
+            },
+            child: Center(
+              child: Text(
+                'Tap anywhere to input mood',
+                style: const TextStyle(color: Colors.white, fontSize: 36),
+                textAlign: TextAlign.center,
               ),
-  
-              const SizedBox(height: 24),
-  
-              // 2) View History button
-              ElevatedButton.icon(
-                icon: const Icon(Icons.history),
-                label: const Text('View Mood History'),
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 12,
-                  ),
-                  textStyle: const TextStyle(fontSize: 18),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/history');
-                },
-              ),
-  
-              const SizedBox(height: 40),
-            ],
+            ),
           ),
-        ),
+
+          // 2) Circular button in top-right corner
+          Positioned(
+            top: 30,
+            right: 15,
+            child: InkWell(
+              onTap: () => Navigator.pushNamed(context, '/analytics'),
+              borderRadius: BorderRadius.circular(30),
+              child: Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: Colors.teal,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 4,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.grid_on, color: Colors.white),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

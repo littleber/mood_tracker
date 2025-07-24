@@ -57,31 +57,41 @@ class _MoodInputScreenState extends State<MoodInputScreen> {
   // Describes the UI of this screen
   @override
   Widget build(BuildContext context) {
-    final selectedEmoji = emojiMap[moodLevel]!;  // Emoji currently selected based on slider
+    final selectedEmoji = emojiMap[moodLevel]!;
+  
     return Scaffold(
-      backgroundColor: Colors.grey[850],  // Dark background
-
-      // Center everything vertically and horizontally
+      backgroundColor: Colors.grey[850],
+  
+      // 1) Add an AppBar with a back button
+      appBar: AppBar(
+        backgroundColor: Colors.grey[900],
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);   // Simply go back
+          },
+        ),
+        title: const Text('How are you feeling?', style: TextStyle(color: Colors.white)),
+        centerTitle: true,
+      ),
+  
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),  // Add horizontal padding
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,  // Center the column vertically
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Show the large emoji representing the mood
               Text(
                 selectedEmoji,
                 style: const TextStyle(fontSize: 100),
               ),
-
-              const SizedBox(height: 20),  // Spacer between emoji and slider
-
-              // Slider to select mood level (1 to 10)
+  
+              const SizedBox(height: 20),
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
-                  // Customize the value label
                   valueIndicatorTextStyle: const TextStyle(
-                    fontSize: 24,            // Change this to make the label bigger
+                    fontSize: 24,
                     color: Colors.white,
                   ),
                 ),
@@ -98,21 +108,16 @@ class _MoodInputScreenState extends State<MoodInputScreen> {
                   },
                 ),
               ),
-
-              const SizedBox(height: 50),  // Spacer between slider and button
-
-              // Submit button
+  
+              const SizedBox(height: 50),
               ElevatedButton(
-                onPressed: _logMood, // Call the logging function
+                onPressed: _logMood,
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20), // Bigger padding
-                  minimumSize: const Size(200, 60),  // Minimum button size (width x height)
-                  textStyle: const TextStyle(
-                    fontSize: 20,  // Larger font
-                    fontWeight: FontWeight.bold,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+                  minimumSize: const Size(200, 60),
+                  textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                child: const Text('Submit Mood'), // Button label
+                child: const Text('Submit Mood'),
               ),
             ],
           ),
