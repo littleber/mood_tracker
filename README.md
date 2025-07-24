@@ -1,16 +1,36 @@
-# mood_tracker
+# 🌤️ Mood Tracker App
 
-A new Flutter project.
+A simple, minimalist Flutter app to help you log moods daily and visualize emotional trends over time.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+### 🏠 Start Screen
+Tap anywhere to quickly begin logging your mood.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Start Screen](assets/readme/start_screen.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+### 😊 Mood Input
+Select your current mood on a scale from 1 (😭) to 10 (🤩) using intuitive emoji-based input.
+
+![Mood Input](assets/readme/input_screen.png)
+
+---
+
+### 📊 Analytics Dashboard
+View mood data, daily averages in a clean layout.
+
+![Analytics Screen](assets/readme/analytics.png)
+
+---
+
+## ✨ Features
+
+- 🔘 One-tap mood logging with emojis
+- 📆 Mood tracking and visualization
+- 📊 Automatic average calculations per day
+
+---
